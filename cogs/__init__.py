@@ -1,9 +1,12 @@
-import os
-import importlib
+# cogs/__init__.py
 
-# Automatically import all modules in this directory
-for filename in os.listdir(os.path.dirname(__file__)):
-    if filename.endswith('.py') and filename != '__init__.py':
-        # Dynamically import each module in the cogs folder
-        module_name = filename[:-3]
-        importlib.import_module(f'.{module_name}', package=__name__)
+def setup(bot):
+    """Carga todos los cogs en el bot."""
+    # Aquí podrías cargar los cogs automáticamente si no quieres hacerlo en bot.py
+    from .admin import Admin
+    from .fun import Fun
+    from .utility import Utility
+
+    bot.add_cog(Admin(bot))
+    bot.add_cog(Fun(bot))
+    bot.add_cog(Utility(bot))
